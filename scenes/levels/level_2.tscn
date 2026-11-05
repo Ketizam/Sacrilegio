@@ -1,0 +1,293 @@
+[gd_scene format=3 uid="uid://ekke6aft7r3g"]
+
+[ext_resource type="AudioStream" uid="uid://bh8r0l2oee1p5" path="res://assets/audio/music/nivel2.ogg" id="2_tv7cl"]
+[ext_resource type="PackedScene" path="res://scenes/platforms/solid_block.tscn" id="p_block"]
+[ext_resource type="PackedScene" path="res://scenes/platforms/falling_platform.tscn" id="p_falling"]
+[ext_resource type="PackedScene" path="res://scenes/objects/goal.tscn" id="p_goal"]
+[ext_resource type="PackedScene" path="res://scenes/platforms/moving_platform.tscn" id="p_moving"]
+[ext_resource type="PackedScene" path="res://scenes/platforms/one_way_platform.tscn" id="p_oneway"]
+[ext_resource type="PackedScene" path="res://scenes/objects/dash_orb.tscn" id="p_orb"]
+[ext_resource type="PackedScene" path="res://scenes/ui/pause_menu.tscn" id="p_pause"]
+[ext_resource type="PackedScene" uid="uid://o4dyrsvj5pdl" path="res://scenes/entities/player.tscn" id="p_player"]
+[ext_resource type="PackedScene" path="res://scenes/objects/spring.tscn" id="p_spring"]
+[ext_resource type="PackedScene" path="res://scenes/objects/wind_zone.tscn" id="p_wind"]
+[ext_resource type="Script" uid="uid://bl0oxhuygeh1s" path="res://scripts/levels/level.gd" id="s_level"]
+[ext_resource type="Script" uid="uid://c6ekdctpwbknb" path="res://scripts/levels/room.gd" id="s_room"]
+
+[node name="Level2" type="Node2D" unique_id=693972639]
+script = ExtResource("s_level")
+level_index = 1
+vertical = true
+music = ExtResource("2_tv7cl")
+
+[node name="Background" type="CanvasLayer" parent="." unique_id=1949560879]
+layer = -10
+
+[node name="Color" type="ColorRect" parent="Background" unique_id=269945549]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.14, 0.22, 0.36, 1)
+
+[node name="Camera" type="Camera2D" parent="." unique_id=1303443035]
+position = Vector2(160, 90)
+
+[node name="Rooms" type="Node2D" parent="." unique_id=1775434545]
+
+[node name="Room1" type="Node2D" parent="Rooms" unique_id=1733956833]
+script = ExtResource("s_room")
+
+[node name="Spawn" type="Marker2D" parent="Rooms/Room1" unique_id=1055570298]
+position = Vector2(24, 152)
+
+[node name="Solids" type="Node2D" parent="Rooms/Room1" unique_id=1925655799]
+
+[node name="Block1" parent="Rooms/Room1/Solids" unique_id=495569711 instance=ExtResource("p_block")]
+position = Vector2(-16, -16)
+size = Vector2(16, 212)
+
+[node name="Block2" parent="Rooms/Room1/Solids" unique_id=116874414 instance=ExtResource("p_block")]
+position = Vector2(320, -16)
+size = Vector2(16, 212)
+
+[node name="Block3" parent="Rooms/Room1/Solids" unique_id=355389156 instance=ExtResource("p_block")]
+position = Vector2(0, 160)
+size = Vector2(96, 20)
+
+[node name="Block4" parent="Rooms/Room1/Solids" unique_id=1636820943 instance=ExtResource("p_block")]
+position = Vector2(224, 160)
+size = Vector2(96, 20)
+
+[node name="Platforms" type="Node2D" parent="Rooms/Room1" unique_id=2002805595]
+
+[node name="MovingPlatform1" parent="Rooms/Room1/Platforms" unique_id=1353152085 instance=ExtResource("p_moving")]
+position = Vector2(104, 148)
+travel = Vector2(80, 0)
+
+[node name="Hazards" type="Node2D" parent="Rooms/Room1" unique_id=2139065436]
+
+[node name="Objects" type="Node2D" parent="Rooms/Room1" unique_id=48719612]
+
+[node name="Spring1" parent="Rooms/Room1/Objects" unique_id=1118206258 instance=ExtResource("p_spring")]
+position = Vector2(264, 152)
+force = 620
+
+[node name="Room2" type="Node2D" parent="Rooms" unique_id=125389020]
+position = Vector2(0, -166)
+script = ExtResource("s_room")
+
+[node name="Spawn" type="Marker2D" parent="Rooms/Room2" unique_id=950373248]
+position = Vector2(254, 136)
+
+[node name="Solids" type="Node2D" parent="Rooms/Room2" unique_id=1009629820]
+position = Vector2(0, -6)
+
+[node name="Block1" parent="Rooms/Room2/Solids" unique_id=574699044 instance=ExtResource("p_block")]
+position = Vector2(-16, -16)
+size = Vector2(16, 212)
+
+[node name="Block2" parent="Rooms/Room2/Solids" unique_id=1400464933 instance=ExtResource("p_block")]
+position = Vector2(320, -16)
+size = Vector2(16, 212)
+
+[node name="Platforms" type="Node2D" parent="Rooms/Room2" unique_id=1553042860]
+position = Vector2(0, -6)
+
+[node name="Platform1" parent="Rooms/Room2/Platforms" unique_id=518751252 instance=ExtResource("p_oneway")]
+position = Vector2(224, 150)
+size = Vector2(96, 8)
+
+[node name="FallingPlatform1" parent="Rooms/Room2/Platforms" unique_id=407898757 instance=ExtResource("p_falling")]
+position = Vector2(168, 122)
+
+[node name="FallingPlatform2" parent="Rooms/Room2/Platforms" unique_id=2041834354 instance=ExtResource("p_falling")]
+position = Vector2(112, 94)
+
+[node name="FallingPlatform3" parent="Rooms/Room2/Platforms" unique_id=927548519 instance=ExtResource("p_falling")]
+position = Vector2(56, 66)
+
+[node name="FallingPlatform4" parent="Rooms/Room2/Platforms" unique_id=1912533973 instance=ExtResource("p_falling")]
+position = Vector2(0, 38)
+
+[node name="Platform2" parent="Rooms/Room2/Platforms" unique_id=1575386155 instance=ExtResource("p_oneway")]
+position = Vector2(57, 11)
+size = Vector2(48, 8)
+
+[node name="Hazards" type="Node2D" parent="Rooms/Room2" unique_id=1437288512]
+position = Vector2(0, -56)
+
+[node name="Objects" type="Node2D" parent="Rooms/Room2" unique_id=1057444347]
+position = Vector2(0, -6)
+
+[node name="Room3" type="Node2D" parent="Rooms" unique_id=1098159657]
+position = Vector2(0, -365)
+script = ExtResource("s_room")
+
+[node name="Spawn" type="Marker2D" parent="Rooms/Room3" unique_id=696064537]
+position = Vector2(60, 142)
+
+[node name="Solids" type="Node2D" parent="Rooms/Room3" unique_id=1343189780]
+
+[node name="Block1" parent="Rooms/Room3/Solids" unique_id=1875476881 instance=ExtResource("p_block")]
+position = Vector2(-16, -19)
+size = Vector2(16, 212)
+
+[node name="Block2" parent="Rooms/Room3/Solids" unique_id=688094039 instance=ExtResource("p_block")]
+position = Vector2(320, -16)
+size = Vector2(16, 212)
+
+[node name="Platforms" type="Node2D" parent="Rooms/Room3" unique_id=468340599]
+
+[node name="Platform1" parent="Rooms/Room3/Platforms" unique_id=1979937879 instance=ExtResource("p_oneway")]
+position = Vector2(40, 150)
+size = Vector2(96, 8)
+
+[node name="MovingPlatform1" parent="Rooms/Room3/Platforms" unique_id=2081043109 instance=ExtResource("p_moving")]
+position = Vector2(152, 138)
+travel = Vector2(56, 0)
+
+[node name="Platform2" parent="Rooms/Room3/Platforms" unique_id=1627298829 instance=ExtResource("p_oneway")]
+position = Vector2(256, 112)
+size = Vector2(48, 8)
+
+[node name="Platform3" parent="Rooms/Room3/Platforms" unique_id=1848506270 instance=ExtResource("p_oneway")]
+position = Vector2(120, 84)
+size = Vector2(40, 8)
+
+[node name="FallingPlatform1" parent="Rooms/Room3/Platforms" unique_id=824045035 instance=ExtResource("p_falling")]
+position = Vector2(176, 50)
+
+[node name="Platform4" parent="Rooms/Room3/Platforms" unique_id=1106936999 instance=ExtResource("p_oneway")]
+position = Vector2(240, 12)
+size = Vector2(56, 8)
+
+[node name="Hazards" type="Node2D" parent="Rooms/Room3" unique_id=1751295621]
+
+[node name="Objects" type="Node2D" parent="Rooms/Room3" unique_id=820286403]
+
+[node name="DashOrb1" parent="Rooms/Room3/Objects" unique_id=1261071356 instance=ExtResource("p_orb")]
+position = Vector2(208, 86)
+
+[node name="Room4" type="Node2D" parent="Rooms" unique_id=803860715]
+position = Vector2(0, -540)
+script = ExtResource("s_room")
+
+[node name="Spawn" type="Marker2D" parent="Rooms/Room4" unique_id=1693787060]
+position = Vector2(250, 142)
+
+[node name="Solids" type="Node2D" parent="Rooms/Room4" unique_id=1332244556]
+
+[node name="Block1" parent="Rooms/Room4/Solids" unique_id=1232329530 instance=ExtResource("p_block")]
+position = Vector2(-16, -16)
+size = Vector2(16, 212)
+
+[node name="Block2" parent="Rooms/Room4/Solids" unique_id=1083925501 instance=ExtResource("p_block")]
+position = Vector2(320, -16)
+size = Vector2(16, 212)
+
+[node name="Platforms" type="Node2D" parent="Rooms/Room4" unique_id=1444367464]
+
+[node name="Platform1" parent="Rooms/Room4/Platforms" unique_id=478417325 instance=ExtResource("p_oneway")]
+position = Vector2(232, 150)
+size = Vector2(80, 8)
+
+[node name="Platform2" parent="Rooms/Room4/Platforms" unique_id=121277277 instance=ExtResource("p_oneway")]
+position = Vector2(120, 70)
+size = Vector2(48, 8)
+
+[node name="FallingPlatform1" parent="Rooms/Room4/Platforms" unique_id=1412018177 instance=ExtResource("p_falling")]
+position = Vector2(72, 52)
+
+[node name="FallingPlatform2" parent="Rooms/Room4/Platforms" unique_id=2020054088 instance=ExtResource("p_falling")]
+position = Vector2(24, 34)
+
+[node name="Platform3" parent="Rooms/Room4/Platforms" unique_id=20629358 instance=ExtResource("p_oneway")]
+position = Vector2(40, 12)
+size = Vector2(48, 8)
+
+[node name="Hazards" type="Node2D" parent="Rooms/Room4" unique_id=410240853]
+
+[node name="Objects" type="Node2D" parent="Rooms/Room4" unique_id=449738390]
+
+[node name="WindZone1" parent="Rooms/Room4/Objects" unique_id=1112921212 instance=ExtResource("p_wind")]
+position = Vector2(176, 60)
+size = Vector2(40, 90)
+push = Vector2(0, -1500)
+
+[node name="WindZone2" parent="Rooms/Room4/Objects" unique_id=172105568 instance=ExtResource("p_wind")]
+position = Vector2(60, 16)
+size = Vector2(100, 64)
+push = Vector2(50, 0)
+
+[node name="Room5" type="Node2D" parent="Rooms" unique_id=330433102]
+position = Vector2(0, -720)
+script = ExtResource("s_room")
+
+[node name="Spawn" type="Marker2D" parent="Rooms/Room5" unique_id=1936264021]
+position = Vector2(44, 142)
+
+[node name="Solids" type="Node2D" parent="Rooms/Room5" unique_id=1522429803]
+
+[node name="Block1" parent="Rooms/Room5/Solids" unique_id=1607399740 instance=ExtResource("p_block")]
+position = Vector2(-16, -16)
+size = Vector2(16, 212)
+
+[node name="Block2" parent="Rooms/Room5/Solids" unique_id=1476236480 instance=ExtResource("p_block")]
+position = Vector2(320, -16)
+size = Vector2(16, 212)
+
+[node name="Block3" parent="Rooms/Room5/Solids" unique_id=878831543 instance=ExtResource("p_block")]
+position = Vector2(0, -16)
+size = Vector2(320, 16)
+
+[node name="Platforms" type="Node2D" parent="Rooms/Room5" unique_id=1387195373]
+
+[node name="Platform1" parent="Rooms/Room5/Platforms" unique_id=1919427127 instance=ExtResource("p_oneway")]
+position = Vector2(24, 150)
+size = Vector2(80, 8)
+
+[node name="MovingPlatform1" parent="Rooms/Room5/Platforms" unique_id=319667623 instance=ExtResource("p_moving")]
+position = Vector2(120, 138)
+travel = Vector2(0, -72)
+speed = 36
+
+[node name="Platform2" parent="Rooms/Room5/Platforms" unique_id=1431473872 instance=ExtResource("p_oneway")]
+position = Vector2(168, 58)
+
+[node name="FallingPlatform1" parent="Rooms/Room5/Platforms" unique_id=1696049513 instance=ExtResource("p_falling")]
+position = Vector2(208, 52)
+size = Vector2(24, 8)
+
+[node name="FallingPlatform2" parent="Rooms/Room5/Platforms" unique_id=1636910000 instance=ExtResource("p_falling")]
+position = Vector2(248, 44)
+size = Vector2(24, 8)
+
+[node name="Platform3" parent="Rooms/Room5/Platforms" unique_id=1786381752 instance=ExtResource("p_oneway")]
+position = Vector2(284, 36)
+size = Vector2(36, 8)
+
+[node name="Hazards" type="Node2D" parent="Rooms/Room5" unique_id=443776792]
+
+[node name="Objects" type="Node2D" parent="Rooms/Room5" unique_id=1530086826]
+
+[node name="WindZone1" parent="Rooms/Room5/Objects" unique_id=1615758276 instance=ExtResource("p_wind")]
+position = Vector2(200, 10)
+size = Vector2(110, 60)
+push = Vector2(-60, 0)
+
+[node name="Goal1" parent="Rooms/Room5/Objects" unique_id=1231988455 instance=ExtResource("p_goal")]
+position = Vector2(296, 4)
+
+[node name="Hint2" type="Label" parent="Rooms/Room5/Objects" unique_id=890404523]
+offset_left = 20.0
+offset_top = 18.0
+theme_override_colors/font_color = Color(0.94, 0.74, 0.3, 1)
+theme_override_font_sizes/font_size = 8
+text = "Algo despierta abajo..."
+
+[node name="Player" parent="." unique_id=768069590 instance=ExtResource("p_player")]
+
+[node name="PauseMenu" parent="." unique_id=1076505904 instance=ExtResource("p_pause")]

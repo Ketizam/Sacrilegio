@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://o4dyrsvj5pdl"]
+
+[ext_resource type="Script" uid="uid://dttbk2lbxmel5" path="res://scripts/entities/player.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://buwrxervrvg78" path="res://assets/sprites/player/player_idle.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://8ixpf0h48yln" path="res://assets/sprites/player/player_run.png" id="3"]
+
+[sub_resource type="SpriteFrames" id="Frames"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="Hitbox"]
+size = Vector2(8, 14)
+
+[node name="Player" type="CharacterBody2D" unique_id=1653265278 groups=["player"]]
+collision_layer = 2
+script = ExtResource("1")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1447276175]
+sprite_frames = SubResource("Frames")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=999681194]
+position = Vector2(0, 1)
+shape = SubResource("Hitbox")
+
+[node name="DashTimer" type="Timer" parent="." unique_id=663401078]
+one_shot = true
+
+[node name="DeathParticles" type="CPUParticles2D" parent="." unique_id=58927623]
+emitting = false
+amount = 16
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 200)
+initial_velocity_min = 40.0
+initial_velocity_max = 100.0
+scale_amount_min = 1.5
+scale_amount_max = 2.5
+color = Color(0.18, 0.545, 0.6, 1)
+
+[node name="DashParticles" type="CPUParticles2D" parent="." unique_id=1105775665]
+emitting = false
+amount = 10
+lifetime = 0.25
+gravity = Vector2(0, 0)
+initial_velocity_max = 10.0
+scale_amount_min = 1.5
+scale_amount_max = 2.5
+color = Color(0.55, 0.65, 1, 0.8)
